@@ -114,6 +114,8 @@
         <textarea id="outputText" readonly></textarea>
     </div>
 
+    <button onclick="copyToClipboard()">העתקת תוצאה</button>
+
     <script>
         const engToHeb = {
             "p": "פ", "o": "ם", "i": "ן", "u": "ו", "y": "ט",
@@ -136,6 +138,14 @@
             const input = document.getElementById("inputText").value;
             const output = input.split('').map(char => hebToEng[char] || char).join('');
             document.getElementById("outputText").value = output;
+        }
+
+        function copyToClipboard() {
+            const outputField = document.getElementById("outputText");
+            outputField.select();
+            outputField.setSelectionRange(0, 99999); // תומך במכשירים ניידים
+            document.execCommand("copy");
+            alert("הטקסט הועתק ללוח!");
         }
     </script>
 </body>
